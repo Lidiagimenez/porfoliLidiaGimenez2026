@@ -1,26 +1,63 @@
-@import "tailwindcss";
+@font-face {
+  font-family: 'Kapakana';
+  src: url('/fonts/Kapakana-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Kapakana';
+  src: url('/fonts/Kapakana-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-primary: #127063;
+  --color-accent: #F35A53;
+  --color-black: #000000;
+  --color-white: #FFFFFF;
+
+  --font-title: 'Playfair Display', serif;
+  --font-body: 'Kalnia', serif;
+  --font-brand: 'Kapakana';
+  /* tamaños */
+  --size-name: 75px;       /* Gimenez Lidia Elisa */
+  --size-role: 64px;       /* Desarrolladora.. / fullstack */
+  --weight-name: 700;      /* bold */
+  --weight-role: 600;      /* semibold */
+
+  --size-paragraph-hero: 40px;
+  --radius-card: 15px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* { box-sizing: border-box; }
+html, body {
+  padding: 0; margin: 0;
+  background: #fff; color: var(--color-black);
+   scroll-behavior: smooth;
 }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+button { font-family: var(--font-body); }
+main { min-height: 60vh; }
+.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  h1, h2 {
+    white-space: normal;
+    font-size: clamp(28px, 6vw, 40px);
+    text-align: center;
+  }
+
+  .franja-verde {
+    width: 100%;
+    height: 60px;
+    flex-direction: row;
+    justify-content: center;
+  }
 }
