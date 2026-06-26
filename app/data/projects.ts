@@ -25,6 +25,7 @@ export const projects: Project[] = [
     technologies: ["Next.js 15", "TypeScript", "Tailwind CSS","Framer Motion","Lucide React","Responsive Design","SEO Optimization","Accessibility (WCAG)","Mobile First Design"],
     learnings: ["Optimización de rendimiento y SEO en Next.js","Implementación de animaciones con Framer Motion","Diseño responsive y accesible según estándares WCAG","Integración de iconos vectoriales con Lucide React"],
     links: {
+      github: "https://github.com/usuario/landing-page",
       /*github: "https://github.com/usuario/landing-page",*/
       demo: "https://landingjuridico-q3qv.vercel.app/"
     },
@@ -39,7 +40,7 @@ export const projects: Project[] = [
     technologies: ["Next.js 15", "TypeScript", "Framer Motion","EmailJS","Tailwind CSS","Responsive Design","SEO Optimization","Accessibility (WCAG)"],
     learnings: ["Diseño de experiencias digitales orientadas al storytelling. Creación de landing pages emocionales para eventos y comunidades. Integración de formularios mediante EmailJS sin necesidad de backend. Implementación de galerías visuales optimizadas. Desarrollo de animaciones avanzadas con Framer Motion. Optimización de imágenes y rendimiento en aplicaciones Next.js. Diseño UX centrado en comunidades y experiencias outdoor."],
     links: {
-      /*github: "https://github.com/usuario/calculadora-calorias",*/
+      github: "https://github.com/usuario/landing-page-running",
       demo: "https://landigrunning.vercel.app/",
     },
   },
