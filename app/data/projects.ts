@@ -40,7 +40,7 @@ export const projects: Project[] = [
     learnings: ["Diseño de experiencias digitales orientadas al storytelling. Creación de landing pages emocionales para eventos y comunidades. Integración de formularios mediante EmailJS sin necesidad de backend. Implementación de galerías visuales optimizadas. Desarrollo de animaciones avanzadas con Framer Motion. Optimización de imágenes y rendimiento en aplicaciones Next.js. Diseño UX centrado en comunidades y experiencias outdoor."],
     links: {
       /*github: "https://github.com/usuario/calculadora-calorias",*/
-      demo: "https://landing-page-running.vercel.app",
+      demo: "https://landigrunning.vercel.app/",
     },
   },
 ]
