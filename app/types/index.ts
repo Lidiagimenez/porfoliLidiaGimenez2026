@@ -13,5 +13,10 @@ export type Project = {
     github: string
     demo: string
   }
+  
 
+}
+export type NavItem = {
+  label: string
+  href: string
 }
