@@ -1,167 +1,301 @@
 'use client'
-  import { projects } from '../../data/projects'
-  import { notFound } from 'next/navigation'
-  import { motion } from 'framer-motion'
+import { projects } from '../../data/projects'
+import { notFound } from 'next/navigation'
+import { motion } from 'framer-motion'
 import { use } from 'react'
 
-  export default function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = use(params)   //  unwrap del Promise
+export default function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = use(params)
   const project = projects.find((p) => p.slug === slug)
   if (!project) return notFound()
 
+  return (
+    <>
+      <style>{`
+        .project-wrapper {
+          display: grid;
+          grid-template-columns: 1fr 60px;
+          gap: 32px;
+          align-items: stretch;
+          padding: 48px 24px;
+          min-height: 100vh;
+          box-sizing: border-box;
+        }
 
+        .project-title {
+          font-family: var(--font-title);
+          font-size: clamp(32px, 6vw, 64px);
+          font-weight: 700;
+          color: var(--color-black);
+          margin-bottom: 16px;
+          line-height: 1.1;
+        }
 
-    return (
-      <section
-        className="container"
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr auto',
-          gap: 32,
-          alignItems: 'stretch',
-          padding: '48px 0',
-          minHeight: '100vh',
-        }}
-      >
+        .project-description {
+          font-family: var(--font-body);
+          font-size: clamp(18px, 3vw, 32px);
+          color: var(--color-black);
+          margin-bottom: 24px;
+          line-height: 1.6;
+        }
+
+        .project-links {
+          display: flex;
+          gap: 16px;
+          margin-bottom: 40px;
+          flex-wrap: wrap;
+        }
+
+        .btn-demo {
+          font-family: var(--font-body);
+          font-size: 16px;
+          background-color: #127063;
+          color: #FFFFFF;
+          padding: 10px 24px;
+          border-radius: 8px;
+          text-decoration: none;
+          font-weight: 600;
+          display: inline-block;
+        }
+
+        .btn-github {
+          font-family: var(--font-body);
+          font-size: 16px;
+          background-color: #111111;
+          color: #FFFFFF;
+          padding: 10px 24px;
+          border-radius: 8px;
+          text-decoration: none;
+          font-weight: 600;
+          display: inline-block;
+        }
+
+        .project-context-block {
+          display: flex;
+          align-items: flex-start;
+          margin-bottom: 32px;
+          max-width: 800px;
+        }
+
+        .context-bar {
+          flex-shrink: 0;
+          width: 6px;
+          background-color: #F35A53;
+          margin-right: 16px;
+          border-radius: 2px;
+          align-self: stretch;
+        }
+
+        .project-context-text {
+          font-family: var(--font-body);
+          font-size: clamp(16px, 2.5vw, 24px);
+          color: var(--color-black);
+          margin: 0;
+          line-height: 1.6;
+        }
+
+        .project-section-title {
+          font-family: var(--font-title);
+          font-size: clamp(20px, 2.5vw, 28px);
+          margin-bottom: 12px;
+        }
+
+        .project-list {
+          font-family: var(--font-body);
+          font-size: clamp(16px, 2vw, 20px);
+          margin-bottom: 32px;
+          padding-left: 4px;
+          list-style: none;
+          margin-left: 0;
+        }
+
+        .project-list li {
+          margin-bottom: 6px;
+        }
+
+        .btn-back {
+          font-family: var(--font-body);
+          font-size: 18px;
+          background-color: #F35A53;
+          color: #FFFFFF;
+          padding: 12px 24px;
+          border-radius: 8px;
+          text-decoration: none;
+          display: inline-block;
+        }
+
+        /* Franja vertical derecha */
+        .sidebar-brand {
+          background-color: #127063;
+          width: 60px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-between;
+          padding: 20px 0;
+          border-radius: 4px;
+        }
+
+        .sidebar-line {
+          flex: 1;
+          width: 2px;
+          background-color: #FFFFFF;
+        }
+
+        .sidebar-text {
+          font-family: var(--font-brand);
+          font-style: italic;
+          font-size: 40px;
+          font-weight: 700;
+          color: #FFFFFF;
+          writing-mode: vertical-rl;
+          white-space: nowrap;
+        }
+
+        /* ── Tablet (≤ 768px) ── */
+        @media (max-width: 768px) {
+          .project-wrapper {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto;
+            padding: 32px 20px;
+            gap: 24px;
+          }
+
+          /* En tablet/móvil la franja va al fondo, horizontal */
+          .sidebar-brand {
+            width: 100%;
+            height: 56px;
+            flex-direction: row;
+            padding: 0 20px;
+            border-radius: 4px;
+          }
+
+          .sidebar-line {
+            flex: 1;
+            height: 2px;
+            width: auto;
+          }
+
+          .sidebar-text {
+            writing-mode: horizontal-tb;
+            font-size: 28px;
+          }
+        }
+
+        /* ── Móvil pequeño (≤ 480px) ── */
+        @media (max-width: 480px) {
+          .project-wrapper {
+            padding: 24px 16px;
+            gap: 20px;
+          }
+
+          .project-links {
+            flex-direction: column;
+          }
+
+          .btn-demo,
+          .btn-github,
+          .btn-back {
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+          }
+
+          .sidebar-text {
+            font-size: 22px;
+          }
+        }
+      `}</style>
+
+      <section className="container project-wrapper">
+
         {/* Contenido principal */}
         <div>
           <motion.h2
+            className="project-title"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            style={{
-              fontFamily: 'var(--font-title)',
-              fontSize: '64px',
-              fontWeight: 700,
-              color: 'var(--color-black)',
-              marginBottom: '16px',
-            }}
           >
             {project.title}
           </motion.h2>
 
-          {/* Párrafo de descripción */}
           <motion.p
+            className="project-description"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: '32px',
-              color: 'var(--color-black)',
-              marginBottom: '32px',
-              lineHeight: 1.6,
-            }}
           >
             {project.description}
           </motion.p>
 
-          {/* Línea + contexto */}
-          <div style={{ display: 'flex', alignItems: 'flex-start', marginBottom: '32px', maxWidth: '800px' }}>
-            <div
-              style={{
-                width: '25px',
-                backgroundColor: '#F35A53',
-                marginRight: '16px',
-                borderRadius: '2px',
-                alignSelf: 'stretch',
-              }}
-            />
-            <p
-              style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '24px',
-                color: 'var(--color-black)',
-                margin: 0,
-                lineHeight: 1.6,
-              }}
-            >
-              {project.context}
-            </p>
+          {/* Botones de enlaces */}
+          <div className="project-links">
+            {project.links.demo && (
+              <a
+                href={project.links.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-demo"
+              >
+                Landing Demo
+              </a>
+            )}
+            {project.links.github && (
+              <a
+                href={project.links.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-github"
+              >
+                Ver GitHub
+              </a>
+            )}
+          </div>
+
+          {/* Línea roja + contexto */}
+          <div className="project-context-block">
+            <div className="context-bar" />
+            <p className="project-context-text">{project.context}</p>
           </div>
 
           {/* Tecnologías */}
-          <h3 style={{ fontFamily: 'var(--font-title)', fontSize: '28px', marginBottom: '12px' }}>
-            Tecnologías utilizadas
-          </h3>
-          <ul style={{ fontFamily: 'var(--font-body)', fontSize: '20px', marginBottom: '32px' }}>
+          <h3 className="project-section-title">Tecnologías utilizadas</h3>
+          <ul className="project-list">
             {project.technologies.map((tech, i) => (
               <li key={i}>• {tech}</li>
             ))}
           </ul>
 
           {/* Qué aprendí */}
-          <h3 style={{ fontFamily: 'var(--font-title)', fontSize: '28px', marginBottom: '12px' }}>
-            Qué aprendí
-          </h3>
-          <ul style={{ fontFamily: 'var(--font-body)', fontSize: '20px', marginBottom: '32px' }}>
+          <h3 className="project-section-title">Qué aprendí</h3>
+          <ul className="project-list">
             {project.learnings.map((item, i) => (
               <li key={i}>• {item}</li>
             ))}
           </ul>
 
-          {/* Enlaces */}
-          <h3 style={{ fontFamily: 'var(--font-title)', fontSize: '28px', marginBottom: '12px' }}>
-            Ver proyecto y código fuente
-          </h3>
-          <ul style={{ fontFamily: 'var(--font-body)', fontSize: '20px' }}>
-            <li>
-              • <a href={project.links.github} target="_blank">Código fuente (GitHub)</a>
-            </li>
-            <li>
-              • <a href={project.links.demo} target="_blank">Demo en Vercel</a>
-            </li>
-          </ul>
-
           {/* Botón volver */}
           <div style={{ marginTop: '48px' }}>
-            <a href="/#proyectos" style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: '18px',
-              backgroundColor: '#F35A53',
-              color: '#FFFFFF',
-              padding: '12px 24px',
-              borderRadius: '8px',
-              textDecoration: 'none',
-            }}>
+            <a href="/#proyectos" className="btn-back">
               ← Volver a la página anterior
             </a>
           </div>
         </div>
 
-        {/* Franja vertical derecha con ElisaDev */}
-        <div
-          style={{
-            backgroundColor: '#127063',
-            width: '60px',
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            position: 'relative',
-            padding: '20px 0',
-          }}
+        {/* Franja de marca — vertical en desktop, horizontal en móvil */}
+        <motion.div
+          className="sidebar-brand"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
         >
-          <div style={{ flex: 1, width: '2px', backgroundColor: '#FFFFFF' }} />
-          <motion.span
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            style={{
-              fontFamily: 'var(--font-brand)',
-              fontStyle: 'italic',
-              fontSize: 48,
-              fontWeight: 700,
-              color: '#FFFFFF',
-              writingMode: 'vertical-rl',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            ElisaDev
-          </motion.span>
-          <div style={{ flex: 1, width: '2px', backgroundColor: '#FFFFFF' }} />
-        </div>
+          <div className="sidebar-line" />
+          <span className="sidebar-text">ElisaDev</span>
+          <div className="sidebar-line" />
+        </motion.div>
+
       </section>
-    )
-  }
+    </>
+  )
+}

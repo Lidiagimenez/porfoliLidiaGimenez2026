@@ -2,15 +2,7 @@
 
 import Link from "next/link"
 import { motion } from "framer-motion"
-import {
-  Code,
-  Globe,
-  Plus,
-  BarChart,
-  ShoppingCart,
-  BookOpen,
-  LucideIcon,
-} from "lucide-react"
+import { Code, Globe, Plus, BarChart, ShoppingCart, BookOpen, LucideIcon } from "lucide-react"
 import { Project } from "../types/index"
 
 interface ProjectCardProps {
@@ -36,7 +28,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
       style={{
-        backgroundColor: 'var(--color-primary)',   // fondo verde
+        backgroundColor: 'var(--color-primary)',
         borderRadius: 'var(--radius-card)',
         padding: '24px',
         display: 'flex',
@@ -46,13 +38,11 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
       }}
     >
-      {/* Ícono */}
       <Icon size={32} color="#FFFFFF" />
 
-      {/* Título */}
       <h3
         style={{
-          fontSize: '28px',
+          fontSize: 'clamp(20px, 5vw, 28px)',
           fontFamily: 'var(--font-title)',
           margin: 0,
           color: '#FFFFFF',
@@ -61,11 +51,11 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         {project.title}
       </h3>
 
-      {/* Contenedor con línea roja + párrafo */}
       <div style={{ display: 'flex', alignItems: 'flex-start', width: '100%' }}>
         <div
           style={{
             width: '4px',
+            minWidth: '4px',
             backgroundColor: '#F35A53',
             marginRight: '12px',
             borderRadius: '2px',
@@ -74,7 +64,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         />
         <p
           style={{
-            fontSize: '20px',
+            fontSize: 'clamp(14px, 3.5vw, 18px)',
             fontFamily: 'var(--font-body)',
             margin: 0,
             color: '#FFFFFF',
@@ -85,7 +75,6 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         </p>
       </div>
 
-      {/* Botón */}
       <Link
         href={`/proyecto/${project.slug}`}
         style={{
@@ -94,10 +83,11 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           backgroundColor: '#F35A53',
           color: '#FFFFFF',
           borderRadius: 8,
-          fontSize: '18px',
+          fontSize: '16px',
           fontFamily: 'var(--font-body)',
           cursor: 'pointer',
           textDecoration: 'none',
+          display: 'inline-block',
         }}
       >
         Ver proyecto
